@@ -63,7 +63,7 @@ export function RoomGrid({ rooms, bookings, date, onCellClick, onBookingClick }:
 
   return (
     <div className="flex-grow flex flex-col h-full overflow-x-auto hide-scrollbar">
-      <div className="flex flex-col h-full min-w-[700px] md:min-w-0">
+      <div className="flex flex-col h-full min-w-[900px] md:min-w-0">
         {/* ROOM HEADERS */}
         <div className="flex border-b border-slate-200 bg-slate-50 shrink-0">
         <div className="w-24 border-r border-slate-200 flex items-center justify-center">

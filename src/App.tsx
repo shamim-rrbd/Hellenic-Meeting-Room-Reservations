@@ -198,7 +198,7 @@ export default function App() {
               <DialogTrigger className="bg-slate-900 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-none cursor-pointer hover:bg-slate-800 transition-colors">
                   + New Booking
               </DialogTrigger>
-              <DialogContent className="rounded-none max-w-lg" showCloseButton={false}>
+              <DialogContent className="rounded-none max-w-lg w-[90vw] mx-auto sm:w-full sm:mx-auto" showCloseButton={false}>
                   <DialogHeader className="bg-slate-100 p-4 flex flex-row items-center justify-between">
                       <DialogTitle className="text-xs font-bold uppercase tracking-widest text-[#0f172a]">New Booking Request</DialogTitle>
                       <DialogClose className="cursor-pointer mt-1">
@@ -300,7 +300,7 @@ export default function App() {
                     <span className="font-bold uppercase tracking-wider text-xs text-slate-800">Menu</span>
                     <button onClick={() => setIsMobileMenuOpen(false)} className="p-1 cursor-pointer"><XIcon className="size-5 text-slate-600" /></button>
                </div>
-               <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-6 bg-white">
+               <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-6 bg-white justify-center">
                    <button className="bg-slate-900 text-white px-4 py-3 text-xs font-bold uppercase tracking-wider rounded-none cursor-pointer w-full text-center hover:bg-slate-800 transition-colors"
                      onClick={() => { setIsMobileMenuOpen(false); setIsFormOpen(true); }}>
                      + New Booking
@@ -356,6 +356,9 @@ export default function App() {
                           </div>
                        </div>
                    )}
+               </div>
+               <div className="text-[10px] text-slate-400 text-center p-4 border-t border-slate-100">
+                    &copy; 2026 Hellenic Group. All rights reserved.
                </div>
             </div>
           </div>
