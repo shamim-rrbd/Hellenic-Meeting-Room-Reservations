@@ -1,0 +1,6 @@
+{
+  "name": "Hellenic Group Room Booking",
+  "description": "A corporate meeting room reservation system for Hellenic Group.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

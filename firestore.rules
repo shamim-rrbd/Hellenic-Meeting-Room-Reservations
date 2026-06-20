@@ -1,0 +1,54 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin(userId) {
+      return isSignedIn() && (
+        exists(/databases/$(database)/documents/admins/$(userId)) ||
+        (request.auth.token.email == "smshamim007@gmail.com" && request.auth.token.email_verified == true)
+      );
+    }
+
+    // Admins Collection: Each admin can read, write, and manage their own details.
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn() && request.auth.uid == adminId
+                            && request.resource.data.keys().hasAll(['name', 'designation', 'email', 'createdAt'])
+                            && request.resource.data.name is string
+                            && request.resource.data.name.size() > 0
+                            && request.resource.data.name.size() <= 200
+                            && request.resource.data.designation is string
+                            && request.resource.data.designation.size() > 0
+                            && request.resource.data.designation.size() <= 200
+                            && request.resource.data.email is string
+                            && request.resource.data.email.size() > 0
+                            && request.resource.data.email.size() <= 200;
+      allow delete: if false;
+    }
+
+    // Bookings Collection: Publicly readable and creations are permitted with name validation, but modification is restricted to Admins.
+    match /bookings/{bookingId} {
+      allow read, list: if true;
+      allow create: if request.resource.data.keys().hasAll(['room_id', 'visitor_name', 'company_name', 'department', 'attendees', 'food_served'])
+                    && request.resource.data.visitor_name is string
+                    && request.resource.data.visitor_name.size() > 0
+                    && request.resource.data.visitor_name.size() <= 200;
+      allow update, delete: if isAdmin(request.auth.uid);
+    }
+
+    // Rooms Collection: Publicly readable and write access restricted to admins
+    match /rooms/{roomId} {
+      allow read, list: if true;
+      allow create, update, delete: if isAdmin(request.auth.uid);
+    }
+  }
+}

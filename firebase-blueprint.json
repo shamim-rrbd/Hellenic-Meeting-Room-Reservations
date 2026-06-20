@@ -1,0 +1,64 @@
+{
+  "entities": {
+    "Admin": {
+      "title": "Admin",
+      "description": "An administrative user of the application",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "designation": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "designation", "email", "createdAt"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "A booking record for a room",
+      "type": "object",
+      "properties": {
+        "room_id": { "type": "string" },
+        "visitor_name": { "type": "string" },
+        "company_name": { "type": "string" },
+        "department": { "type": "string" },
+        "attendees": { "type": "number" },
+        "food_served": { "type": "boolean" },
+        "food_type": { "type": "string", "enum": ["Snack", "Lunch"] },
+        "booking_date": { "type": "string" },
+        "start_time": { "type": "string" },
+        "end_time": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected", "cancelled"] },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      },
+      "required": ["room_id", "visitor_name", "company_name", "department", "attendees", "food_served", "booking_date", "start_time", "end_time", "status"]
+    },
+    "Room": {
+      "title": "Room",
+      "description": "A workspace room configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "capacity": { "type": "number" },
+        "facilities": { "type": "string" },
+        "status": { "type": "string", "enum": ["Online", "Offline", "Hybrid"] }
+      },
+      "required": ["id", "name", "capacity", "facilities"]
+    }
+  },
+  "firestore": {
+    "admins/{adminId}": {
+      "schema": "Admin",
+      "description": "Collection of administrators"
+    },
+    "bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of room bookings"
+    },
+    "rooms/{roomId}": {
+      "schema": "Room",
+      "description": "Collection of meeting rooms"
+    }
+  }
+}
