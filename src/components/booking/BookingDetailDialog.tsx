@@ -21,6 +21,12 @@ export function BookingDetailDialog({ booking, open, onClose, isAdmin, rooms }: 
 
   const roomName = rooms.find(r => r.id === booking.room_id)?.name || 'Unknown Room';
 
+  const formatDate = (dateString: string) => {
+    const [year, month, day] = dateString.split('-');
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return `${day}-${months[parseInt(month, 10) - 1]}-${year}`;
+  };
+
   const handleUpdateStatus = async (newStatus: 'approved' | 'rejected' | 'cancelled') => {
     setLoading(true);
     try {
@@ -95,17 +101,17 @@ export function BookingDetailDialog({ booking, open, onClose, isAdmin, rooms }: 
           <div className="border-t border-b border-slate-100 py-3 space-y-2 text-xs text-slate-600 font-medium">
             <div className="flex items-center gap-2.5">
               <Calendar className="h-4 w-4 text-slate-400 shrink-0" />
-              <span>{booking.booking_date}</span>
+              <span>Date: <strong className="text-slate-800">{formatDate(booking.booking_date)}</strong></span>
             </div>
             
             <div className="flex items-center gap-2.5">
               <Clock className="h-4 w-4 text-slate-400 shrink-0" />
-              <span className="font-bold text-slate-800">{booking.start_time} - {booking.end_time}</span>
+              <span>Time: <strong className="text-slate-800">{booking.start_time} - {booking.end_time}</strong></span>
             </div>
 
             <div className="flex items-center gap-2.5">
               <Building className="h-4 w-4 text-slate-400 shrink-0" />
-              <span>Organization: <strong className="text-slate-800">{booking.company_name}</strong></span>
+              <span>Org / Guest: <strong className="text-slate-800">{booking.company_name}</strong></span>
             </div>
 
             <div className="flex items-center gap-2.5">
@@ -121,7 +127,7 @@ export function BookingDetailDialog({ booking, open, onClose, isAdmin, rooms }: 
 
           {/* Admin Tools Area */}
           {isAdmin ? (
-            <div className="pt-2">
+            <div className="pt-2 print-no-display">
               <div className="flex items-center gap-1.5 mb-2.5">
                 <Shield className="h-3.5 w-3.5 text-blue-600" />
                 <span className="text-[9px] uppercase font-bold tracking-widest text-[#0f172a]">

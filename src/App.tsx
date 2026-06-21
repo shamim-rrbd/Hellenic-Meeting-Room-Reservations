@@ -198,7 +198,7 @@ export default function App() {
               <DialogTrigger className="bg-slate-900 text-white px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-none cursor-pointer hover:bg-slate-800 transition-colors">
                   + New Booking
               </DialogTrigger>
-              <DialogContent className="rounded-none max-w-lg w-[90vw] mx-auto sm:w-full sm:mx-auto" showCloseButton={false}>
+              <DialogContent className="rounded-none max-w-lg w-[90vw] mx-auto sm:w-full sm:mx-auto max-h-[90vh] overflow-y-auto scrollbar-3px" showCloseButton={false}>
                   <DialogHeader className="bg-slate-100 p-4 flex flex-row items-center justify-between">
                       <DialogTitle className="text-xs font-bold uppercase tracking-widest text-[#0f172a]">New Booking Request</DialogTitle>
                       <DialogClose className="cursor-pointer mt-1">
@@ -222,36 +222,36 @@ export default function App() {
                 </button>
                 
                 {isMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-54 bg-white border border-slate-200 shadow-xl z-50 rounded-none overflow-hidden animate-in fade-in duration-100">
-                    <div className="p-2.5 border-b border-slate-100 bg-slate-50 text-[9px] font-bold text-slate-400 uppercase tracking-widest px-4 flex items-center gap-1.5">
-                      <Shield className="size-3 text-slate-500" />
+                  <div className="absolute right-0 mt-3 w-64 bg-white border border-slate-100 shadow-2xl z-50 rounded-none overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+                    <div className="p-3 border-b border-slate-100 bg-slate-50/50 text-[10px] font-bold text-slate-500 uppercase tracking-widest px-5 flex items-center gap-2">
+                      <Shield className="size-3.5 text-slate-400" />
                       System Admin
                     </div>
                     
                     <button
                       onClick={() => { setActiveTab('dashboard'); setIsMenuOpen(false); }}
-                      className={`w-full text-left px-4 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center gap-2 hover:bg-slate-50 border-r-4 cursor-pointer transition-colors ${activeTab === 'dashboard' ? 'border-r-slate-950 text-slate-900 bg-slate-50/50' : 'border-r-transparent text-slate-500'}`}
+                      className={`w-full text-left px-5 py-3 text-xs uppercase font-bold tracking-wider flex items-center gap-3 hover:bg-slate-100 border-r-4 cursor-pointer transition-all ${activeTab === 'dashboard' ? 'border-r-slate-950 text-slate-900 bg-slate-50' : 'border-r-transparent text-slate-600'}`}
                       id="menu-item-dashboard"
                     >
-                      <LayoutGrid className="size-3.5 text-slate-400" />
+                      <LayoutGrid className="size-4 text-slate-400" />
                       Dashboard
                     </button>
 
                     <button
                       onClick={() => { setActiveTab('requests'); setIsMenuOpen(false); }}
-                      className={`w-full text-left px-4 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center gap-2 hover:bg-slate-50 border-r-4 cursor-pointer transition-colors ${activeTab === 'requests' ? 'border-r-slate-950 text-slate-900 bg-slate-50/50' : 'border-r-transparent text-slate-500'}`}
+                      className={`w-full text-left px-5 py-3 text-xs uppercase font-bold tracking-wider flex items-center gap-3 hover:bg-slate-100 border-r-4 cursor-pointer transition-all ${activeTab === 'requests' ? 'border-r-slate-950 text-slate-900 bg-slate-50' : 'border-r-transparent text-slate-600'}`}
                       id="menu-item-requests"
                     >
-                      <CheckSquare className="size-3.5 text-slate-400" />
+                      <CheckSquare className="size-4 text-slate-400" />
                       Reservation Request
                     </button>
 
                     <button
                       onClick={() => { setActiveTab('settings'); setIsMenuOpen(false); }}
-                      className={`w-full text-left px-4 py-2 text-[10px] uppercase font-bold tracking-wider flex items-center gap-2 hover:bg-slate-50 border-r-4 cursor-pointer transition-colors ${activeTab === 'settings' ? 'border-r-slate-950 text-slate-900 bg-slate-50/50' : 'border-r-transparent text-slate-500'}`}
+                      className={`w-full text-left px-5 py-3 text-xs uppercase font-bold tracking-wider flex items-center gap-3 hover:bg-slate-100 border-r-4 cursor-pointer transition-all ${activeTab === 'settings' ? 'border-r-slate-950 text-slate-900 bg-slate-50' : 'border-r-transparent text-slate-600'}`}
                       id="menu-item-settings"
                     >
-                      <Settings className="size-3.5 text-slate-400" />
+                      <Settings className="size-4 text-slate-400" />
                       Settings
                     </button>
 
@@ -263,10 +263,10 @@ export default function App() {
                         setActiveTab('dashboard');
                         await signOut(auth);
                       }}
-                      className="w-full text-left px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-rose-600 hover:bg-rose-50 flex items-center gap-2 cursor-pointer transition-colors"
+                      className="w-full text-left px-5 py-3 text-xs font-bold uppercase tracking-wider text-rose-600 hover:bg-rose-100 flex items-center gap-3 cursor-pointer transition-all"
                       id="menu-item-signout"
                     >
-                      <LogOut className="size-3.5 text-rose-400" />
+                      <LogOut className="size-4 text-rose-400" />
                       Sign Out
                     </button>
                   </div>

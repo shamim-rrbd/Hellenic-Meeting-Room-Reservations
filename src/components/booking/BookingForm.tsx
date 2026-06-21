@@ -87,7 +87,7 @@ export function BookingForm({ rooms, onSuccess, defaultRoomId, defaultTime, defa
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-          <Label>Full Name</Label>
+          <Label>Your Name</Label>
           <Input required className="rounded-none" value={formData.visitor_name} onChange={(e) => setFormData({...formData, visitor_name: e.target.value})} />
       </div>
       <div className="space-y-2">
